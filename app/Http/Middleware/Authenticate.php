@@ -16,4 +16,5 @@ class Authenticate extends Middleware
     {
         return route('login');
     }
+    // protected $redirectTo = '/auth/login';
 }

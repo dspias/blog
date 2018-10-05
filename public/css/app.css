@@ -3,6 +3,28 @@
 .btn-h1-spacing{
 	margin-top: 18px;
 }
+.btn-h2-spacing{
+	margin-top: 15px;
+}
+.btn-h3-spacing{
+	margin-top: 12px;
+}
+.btn-h4-spacing{
+	margin-top: 9px;
+}
+.btn-h5-spacing{
+	margin-top: 6px;
+}
+.btn-h6-spacing{
+	margin-top: 3px;
+}
+
+.well{
+    background:#e0e0e0;
+    padding:8px;
+    border-radius:5px;
+}
+
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: rgba(0,0,0,.9);

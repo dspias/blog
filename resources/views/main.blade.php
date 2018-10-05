@@ -9,8 +9,7 @@
   
     <div class="container">
 
-		@include('partials._messages')
-  	
+		@include('partials._messages')  	
 
       @yield('content')
 

@@ -2,6 +2,12 @@
 
 @section('title', '| Edit Blog Post')
 
+@section('stylesheet')
+
+	{!! Html::style('css/select2.min.css') !!}
+
+@endsection
+
 @section('content')
 	
 	<div class="row">
@@ -15,7 +21,29 @@
 
 			{{ Form::label('title', 'Title:') }}
 			{{ Form::text('title', null, ['class' => 'form-control','required' => '', 'maxlength' => '191']) }}
-			
+
+			{{ Form::label('slug', 'Slug:') }}
+			{{ Form::text('slug', null, ['class' => 'form-control','required' => '', 'maxlength' => '191']) }}
+
+			{{ Form::label('category_id', 'Category:') }}
+			<select name="category_id" class="form-control">
+				@foreach($categories as $category)
+				<option value="{{$category->id}}" 
+					@if($post->category_id == $category->id)
+						selected
+					@endif
+					>{{$category->name}}</option>
+				@endforeach
+			</select>
+
+			{{ Form::label('tags', 'Tags:') }}
+			<select name="tags[]" class="form-control select2-multi" multiple="multiple">
+				@foreach($tags as $tag)
+				<option value="{{$tag->id}}"> {{$tag->name}} </option>
+				@endforeach
+			</select>
+
+
 			{{ Form::label('body', 'Body:') }}
 			{{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '191']) }}
 
@@ -52,3 +80,15 @@
 	</div>
 
 @endsection 
+
+
+@section('scripts')
+
+	{!! Html::script('js/select2.min.js') !!}
+
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+		$('.select2-multi').select2().val({!! json_encode( $post->tags()->pluck('tag_id')->all() ) !!}).trigger('change');
+	</script>
+
+@endsection

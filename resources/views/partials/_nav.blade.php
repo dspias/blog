@@ -11,6 +11,9 @@
           <li class="nav-item {{ Request::is('/') ? "active":""}}">
             <a class="nav-link" href="/">Home</a>
           </li>
+          <li class="nav-item {{ Request::is('blog') ? "active":""}}">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
           <li class="nav-item {{ Request::is('about') ? "active":""}}">
             <a class="nav-link" href="/about">About</a>
           </li>
@@ -19,20 +22,24 @@
           </li>
         </ul>
   
-  
+      @if(Auth::check())
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Account
+              {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">profile</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="{{ route('posts.index') }}">posts</a>
+              <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+              <a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
             </div>
           </li>
         </ul>
+      @else
+        <a href="{{ route('login') }}" ><button class="btn btn-default">Login</button></a>
+      @endif
   
       </div>
     </nav>

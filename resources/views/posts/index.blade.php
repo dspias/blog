@@ -33,15 +33,26 @@
 							<td>  {{ $posts->id }}	</td>
 							<td>  {{ $posts->title }}	</td>
 							<td>  {{ substr($posts->body, 0, 50) }} {{ strlen($posts->body)>50 ? "...":"" }}	</td>
-							<td>  {{ date('M j, Y h:ia', strtotime( $posts->created_at)) }}	</td>
+							<td>  {{ date('F j, Y, g:i a', strtotime( $posts->created_at)) }}	</td>
 							<td> <a href=" {{ route('posts.show', $posts->id) }}" class="btn btn-defualt btn-sm">View</a> <a href="{{ route('posts.edit', $posts->id) }}" class="btn btn-defualt btn-sm">Edit</a> </td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+
 		</div>
-	</div>
-	
+
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-2 offset-md-5">
+					{!! $post->links(); !!}
+				</div>
+				<div class="offset-md-5">				
+				</div>
+			</div>
+		</div>
+
+	</div>	
 	
 	
 @stop
